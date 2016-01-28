@@ -128,7 +128,7 @@ ckan.module('download_options_dialog', function ($, _) {
                     ('request', 'GetFeature'),
                     ('typeName', str(layer_name)),
                     ('outputFormat', str(output_format)),
-                    ('srs', str(srs)),
+                    ('srsName', str(srs)),
                 ])
                 return service_endpoint + '?' + urllib.urlencode(qs_params) */
 
