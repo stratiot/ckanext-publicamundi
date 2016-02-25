@@ -15,7 +15,7 @@ Example:
 #}
 
 
-{% with truncate=truncate or 0, url=h.url_for(controller='organization', action='read', id=organization.name) %}
+{% with truncate=truncate or 0 %}
 <div class="module module-narrow module-shallow context-info">
     {% if has_context_title %}
  
@@ -26,11 +26,13 @@ Example:
     <section class="module-content">
     {% if organization %}
     {% block image %}
-        <div class="image">
-            <a href="{{ url }}">
-                <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png')}}" width="200" alt="{{ organization.name }}" />
-          </a>
-        </div>
+    	{% with url=h.url_for(controller='organization', action='read', id=organization.name) %}
+	        <div class="image">
+	            <a href="{{ url }}">
+	                <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png')}}" width="200" alt="{{ organization.name }}" />
+	          </a>
+	        </div>
+	     {% endwith %}
     {% endblock %}
     <h1 class="heading">{{ organization.title or organization.name }}</h1>
       {# {% if organization.description %}
